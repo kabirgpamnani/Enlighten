@@ -1,3 +1,22 @@
-<p>
-  electricity works!
-</p>
+<form fxLayout="column row" style="padding: 10px;">
+
+  <mat-form-field>
+    <input type="text" name="usage" placeholder="Electricity usage" required matInput>
+    <mat-hint>Please enter your electricity usage</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="number" name="usage1" placeholder="Electricity usage" required matInput>
+    <mat-hint>Please enter your electricity usage</mat-hint>
+  </mat-form-field>
+
+  <div fxLayoutAlign="end">
+    <button type="submit" mat-button mat-raised-button color="accent">
+      Add
+    </button>
+    <button type="button" mat-button mat-raised-button color="accent" (click)="back()">
+      Back
+    </button>
+  </div>
+
+</form>
