@@ -5,40 +5,51 @@
     <h1 id = "title" >Electricity</h1>
     <h2>1. Airconditioners</h2>
     <p>Let's start with the Airconditioner! ACs are the most energy intensive appliances in Singapore households. Find out how costly your usage is:</p>
-    <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between">
+
+    <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between"
+        #electricityForm="ngForm" (ngSubmit)="saveValues()">
     
-      
       <mat-form-field>
-        <input type="number" name="ACqty" placeholder="Quantity" required matInput>
+        <input type="number" name="ACqty" placeholder="Quantity" 
+            required matInput [ngModel]="electricityData.ACqty">
         <mat-hint>Please enter the number of aircons you have</mat-hint>
       </mat-form-field>
     
       <mat-form-field>
-        <input type="number" name="AChrs" placeholder="Number of Hours" required matInput>
+        <input type="number" name="AChrs" placeholder="Number of Hours" 
+            required matInput [ngModel]="electricityData.AChrs">
         <mat-hint>Please enter your average daily usage (hours)</mat-hint>
       </mat-form-field>
     
       <mat-form-field>
-        <input type="number" name="ACkWH" value = "1.5" placeholder="KiloWatts per Hour used" required matInput>
+        <input type="number" name="ACkWH" value = "1.5" placeholder="KiloWatts per Hour used" 
+            required matInput readonly>
         <mat-hint>This is our suggested value</mat-hint>
       </mat-form-field>
 
       <mat-form-field>
-          <input type="number" name="ACMonthlyCost" placeholder="Monthly Cost ($)" required matInput>
+          <input type="number" name="ACMonthlyCost" placeholder="Monthly Cost ($)" 
+              [(ngModel)]="electricityData.monthlyTotal" readonly matInput >
           
         </mat-form-field>
 
         <mat-form-field>
-            <input type="number" name="ACYearlyCost"  placeholder="Yearly Cost ($)" required matInput>
+            <input type="number" name="ACYearlyCost"  placeholder="Yearly Cost ($)" 
+                [(ngModel)]="electricityData.yearlyTotal" readonly matInput>
             
           </mat-form-field>
 
           <mat-form-field>
-              <input type="number" name="ACCO2" placeholder="CO2 Equivalence" required matInput>
-              
+            <input type="number" name="ACCO2" placeholder="CO2 Equivalence" 
+                [(ngModel)]="electricityData.co2" readonly matInput>
             </mat-form-field>
 
+          <div>
+            <button type="submit" mat-button mat-raised-button color="accent">
+              <mat-icon>save</mat-icon> Save
+            </button>
 
+          </div>
        
       </form>
       </mat-tab>
