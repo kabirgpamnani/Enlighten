@@ -7,12 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 const MODULES = [
     FlexLayoutModule,
     MatToolbarModule, MatListModule, MatSidenavModule,
     MatIconModule, MatInputModule, MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule, MatTabsModule, MatSliderModule
 ];
 
 @NgModule({

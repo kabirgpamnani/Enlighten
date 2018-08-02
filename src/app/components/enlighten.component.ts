@@ -13,7 +13,7 @@ export class EnlightenComponent implements OnInit {
   ngOnInit() { }
 
   goto(route: string) {
-    this.router.navigate(['/', route]);
+    this.router.navigate(['/electricity-totals', route]);
   }
 
 }

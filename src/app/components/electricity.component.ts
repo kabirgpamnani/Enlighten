@@ -12,8 +12,8 @@ export class ElectricityComponent implements OnInit {
 
   ngOnInit() { }
 
-  back() {
-    this.router.navigate(['/']);
+  submit() {
+    this.router.navigate(['/etotals']);
   }
 
 }
