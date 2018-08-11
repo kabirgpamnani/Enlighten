@@ -31,6 +31,10 @@ export class ReduceOrReplenishComponent implements OnInit {
       })
   }
 
+  formatLabel(val: number) {
+    return (val);
+  }
+
   reduceElectricity(event: MatSliderChange) {
     let percentage = event.value;
     if (event.value == 0) {
