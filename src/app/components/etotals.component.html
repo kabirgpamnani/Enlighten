@@ -1,8 +1,31 @@
-<h1>Totals of electricity</h1>
+<div>
+  <h1>Totals of electricity</h1>
 
-<h2>display totals from the previous 3 pages below:</h2>
+  <h2>display totals from the previous 3 pages below:</h2>
 
-<button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
-    Submit
+
+  <form #form="ngForm" fxLayout="column">
+    <h2>Electricity</h2>
+    <mat-form-field>
+      <input type="number" placeholder="Monthly Total" readonly name="eMonthlyTotal"
+          matInput [ngModel]="electricity?.monthlyTotal">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" placeholder="Yearly Total" readonly name="eYearlyTotal"
+          matInput [ngModel]="electricity?.yearlyTotal">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" placeholder="CO2" readonly name="eCO2"
+          matInput [ngModel]="electricity?.co2">
+    </mat-form-field>
+
+    <h2>Water Heater</h2>
+
+  </form>
+
+  <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
+      Submit
   </button>
   
+</div>

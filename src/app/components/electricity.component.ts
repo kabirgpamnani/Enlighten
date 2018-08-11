@@ -118,11 +118,6 @@ waterHeaterData: WaterHeaterData = {
       .catch(err => {
         console.error('Get error: ', err);
       })
-   
-      
-      
-
-     
   }
 
   ngOnDestroy() {
@@ -131,6 +126,8 @@ waterHeaterData: WaterHeaterData = {
   }
   processWaterHeater() {
       console.log('saving values')
+
+      console.log(this.waterHeaterData);
       const promise = this.enlightenSvc.updateWaterHeater(this.waterHeaterData);
       promise.then(() => {
         console.log('we have save the data')

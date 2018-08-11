@@ -11,7 +11,7 @@ export class EnlightenService {
         this.db.version(1).stores({
             //Schema - one for each category - go and delete the database
             electricity: "name,ACqty,AChrs,ACkWH,monthlyTotal,yearlyTotal,co2",
-            waterHeater: "name,WHqty, WHhrs, WHmonthylTotal,WHyearlyTotal,WHco2",
+            waterHeater: "name,WHqty, WHhrs, WHmonthlyTotal,WHyearlyTotal,WHco2",
             dryer: "name,CDqty, CDhrs, CDmonthylTotal,CDyearlyTotal,CDco2",
         });
         this.db.open();
@@ -69,4 +69,35 @@ export class EnlightenService {
 
        
     }
+
+	getAllData(): Promise<any> {
+
+		//Each return a promise, call their respective get methods
+		//and save the promise in an array
+		const promises = [];
+		promises.push(this.getElectricity())
+		promises.push(this.getWaterHeater())
+		promises.push(this.getDryer())
+
+			//Now wait for all the promises to resolve. See 
+			//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+			//When all the promises resolve, you'll get an array. The data in the array 
+			//is in the same sequence as we queried them above
+		const allResults = Promise.all(promises)
+				.then(results => {
+					//results is an array of [ electricity, water heater, dryer ]
+					//Since each of them is an array, we 'flatten' the result by
+					//retrieving the data and placing them in an array
+					//We now return the array. 
+					//If you return something from within a promise (then), you'll get another
+					//promise
+					const data = []
+					for (var i of results)
+						data.push(i[0])
+					//This will be wrapped in a promise
+					return (data)
+                })
+
+        return (allResults);
+	}
 }

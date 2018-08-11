@@ -13,7 +13,7 @@ const APPROUTE: Routes = [
     { path: "car", component: CarComponent},
     //Need to add routes here 
     { path: "etotals", component: EtotalsComponent },
-    { path: "ReduceOrReplenish", component: ReduceOrReplenishComponent },
+    { path: "reduceorreplenish", component: ReduceOrReplenishComponent },
 
     //Last line
     { path: '**', redirectTo: '/', pathMatch: 'full' }
