@@ -31,6 +31,19 @@ export class EnlightenService {
             this.db['electricity']
                 .where('name').equals('electricity') //this is the query
                 .toArray() //analogy carpark, default each - highway
+                .then(result => {
+                    if (!result.length)
+                        result.push({
+                            name: 'electricity',
+                            ACqty: 0,
+                            AChrs: 0,
+                            ACkWH: 0,
+                            monthlyTotal: 0,
+                            yearlyTotal: 0,
+                            co2: 0
+                        })
+                    return (result);
+                })
         );
 
        
@@ -48,6 +61,18 @@ export class EnlightenService {
             this.db['waterHeater']
                 .where('name').equals('waterHeater') //this is the query
                 .toArray() //analogy carpark, default each - highway
+                .then(result => {
+                    if (!result.length)
+                        result.push({
+                            name: 'waterHeater',
+                            WHqty: 0,
+                            WHhrs: 0,
+                            WHmonthlyTotal: 0,
+                            WHyearlyTotal: 0,
+                            WHco2: 0
+                        })
+                    return(result);
+                })
         );
 
        
@@ -65,6 +90,18 @@ export class EnlightenService {
             this.db['dryer']
                 .where('name').equals('dryer') //this is the query
                 .toArray() //analogy carpark, default each - highway
+                .then(result => {
+                    if (!result.length)
+                        result.push({
+                            name: 'dryer',
+                            CDqty: 0,
+                            CDhrs: 0,
+                            CDmonthylTotal: 0,
+                            CDyearlyTotal: 0,
+                            CDco2: 0
+                        })
+                    return (result);
+                })
         );
 
        
