@@ -17,6 +17,10 @@ export class ReduceOrReplenishComponent implements OnInit {
   reducedElectricity = 0.0;
   numHrs = 0;
 
+  maxAC = 0;
+  maxWH = 0;
+  maxCD = 0;
+
   constructor(private enlightenSvc: EnlightenService) { }
 
   ngOnInit() {
@@ -30,6 +34,10 @@ export class ReduceOrReplenishComponent implements OnInit {
         //Initialize all reductions
         this.reducedElectricity = this.electricity.yearlyTotal;
         this.numHrs = this.electricity.AChrs;
+
+        this.maxAC = this.electricity.AChrs;
+        this.maxWH = this.waterHeater.WHhrs;
+        this.maxCD = this.dryer.CDhrs;
       })
   }
 

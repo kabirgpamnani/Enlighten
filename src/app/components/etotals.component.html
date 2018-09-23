@@ -4,21 +4,22 @@
     <h2>Electricity</h2>
     <mat-form-field>
       <input type="number" placeholder="Monthly Total" readonly name="eMonthlyTotal"
-          matInput [ngModel]="electricity?.monthlyTotal">
+          matInput [ngModel]="monthlyTotal">
     </mat-form-field>
     <mat-form-field>
       <input type="number" placeholder="Yearly Total" readonly name="eYearlyTotal"
-          matInput [ngModel]="electricity?.yearlyTotal">
+          matInput [ngModel]="yearlyTotal">
     </mat-form-field>
 
     <mat-form-field>
       <input type="number" placeholder="CO2" readonly name="eCO2"
-          matInput [ngModel]="electricity?.co2">
+          matInput [ngModel]="co2Total">
     </mat-form-field>
 
-   
-
   </form>
+
+  <app-pie-chart *ngFor="let d of pieData"
+      [title]="d.name" [pieData]="d.data"></app-pie-chart>
 
   <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
       Submit

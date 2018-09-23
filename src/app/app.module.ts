@@ -14,6 +14,8 @@ import { CarComponent } from './components/car.component';
 import { EtotalsComponent } from './components/etotals.component';
 import { ReduceOrReplenishComponent } from './components/reduce-or-replenish.component';
 import { EnlightenService } from './enlighten.service';
+import { PieChartComponent } from './components/pie-chart.component';
+import { ExportComponent } from './components/export.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { EnlightenService } from './enlighten.service';
     CarComponent,
     EtotalsComponent,
     ReduceOrReplenishComponent,
+    PieChartComponent,
+    ExportComponent,
     
   ],
   //Imports all exported components @NgModule({ exports: [ ... ]})

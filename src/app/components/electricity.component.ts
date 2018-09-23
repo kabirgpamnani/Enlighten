@@ -108,7 +108,16 @@ waterHeaterData: WaterHeaterData = {
         }
     )
 
+    this.enlightenSvc.getAllData()
+        .then(results => {
+          console.log('results: ', results);
+          this.electricityData = results[0];
+          this.waterHeaterData = results[1];
+          this.dryerData = results[2];
+        })
+
     // Monad
+    /*
     this.enlightenSvc.getElectricity() //returns a Promise
       .then((recs: ElectricityData[]) => {
         console.log('result from database: ', recs);
@@ -119,6 +128,7 @@ waterHeaterData: WaterHeaterData = {
       .catch(err => {
         console.error('Get error: ', err);
       })
+      */
   }
 
   ngOnDestroy() {
@@ -169,6 +179,10 @@ waterHeaterData: WaterHeaterData = {
 
   submit() {
     this.router.navigate(['/etotals']);
+  }
+
+  exportData() {
+    this.router.navigate(['/export'])
   }
 
 }

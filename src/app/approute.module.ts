@@ -5,6 +5,7 @@ import { ElectricityComponent } from './components/electricity.component';
 import { CarComponent} from './components/car.component';
 import { EtotalsComponent } from './components/etotals.component';
 import { ReduceOrReplenishComponent } from './components/reduce-or-replenish.component';
+import { ExportComponent } from './components/export.component';
 
 const APPROUTE: Routes = [
     { path: "", component: EnlightenComponent },
@@ -14,6 +15,7 @@ const APPROUTE: Routes = [
     //Need to add routes here 
     { path: "etotals", component: EtotalsComponent },
     { path: "reduceorreplenish", component: ReduceOrReplenishComponent },
+    { path: "export", component: ExportComponent },
 
     //Last line
     { path: '**', redirectTo: '/', pathMatch: 'full' }

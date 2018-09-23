@@ -1,165 +1,167 @@
+<mat-tab-group>
+  <mat-tab label="Airconditioner">
+    <div style="padding: 10px;">
+      <div fxLayoutAlign="center">
+        <h1 id="title">Electricity</h1>
+      </div>
+      <h2>1. Airconditioners</h2>
+      <p>Let's start with the Airconditioner! ACs are the most energy intensive appliances in Singapore households.
+        Find out how costly your usage is:</p>
 
+      <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign="space-between" #electricityForm="ngForm"
+        (ngSubmit)="saveValues()">
 
-<mat-tab-group >
-  <mat-tab label="Airconditioner"> 
-    <div style ="padding: 10px;" >
-   <div fxLayoutAlign = "center" > 
-     <h1 id = "title" >Electricity</h1> </div>
-    <h2>1. Airconditioners</h2>
-    <p>Let's start with the Airconditioner! ACs are the most energy intensive appliances in Singapore households. Find out how costly your usage is:</p>
-
-    <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between"
-        #electricityForm="ngForm" (ngSubmit)="saveValues()">
-    
-      <mat-form-field>
-        <input type="number" name="ACqty" placeholder="Quantity" 
-            required matInput [ngModel]="electricityData.ACqty">
-        <mat-hint>Please enter the number of aircons you have</mat-hint>
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="AChrs" placeholder="Number of Hours" 
-            required matInput [ngModel]="electricityData.AChrs">
-        <mat-hint>Please enter your average daily usage (hours)</mat-hint>
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="ACkWH" value = "1.5" placeholder="KiloWatts per Hour used" 
-            required matInput readonly>
-        <mat-hint>This is our suggested value</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field>
-          <input type="number" name="ACMonthlyCost" placeholder="Monthly Cost ($)" 
-              [(ngModel)]="electricityData.monthlyTotal" readonly matInput >
-          
+        <mat-form-field>
+          <input type="number" name="ACqty" placeholder="Quantity" required matInput [ngModel]="electricityData.ACqty">
+          <mat-hint>Please enter the number of aircons you have</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
-            <input type="number" name="ACYearlyCost"  placeholder="Yearly Cost ($)" 
-                [(ngModel)]="electricityData.yearlyTotal" readonly matInput>
-            
-          </mat-form-field>
+          <input type="number" name="AChrs" placeholder="Number of Hours" required matInput [ngModel]="electricityData.AChrs">
+          <mat-hint>Please enter your average daily usage (hours)</mat-hint>
+        </mat-form-field>
 
-          <mat-form-field>
-            <input type="number" name="ACCO2" placeholder="CO2 Equivalence" 
-                [(ngModel)]="electricityData.co2" readonly matInput>
-            </mat-form-field>
+        <mat-form-field>
+          <input type="number" name="ACkWH" value="1.5" placeholder="KiloWatts per Hour used" required matInput
+            readonly>
+          <mat-hint>This is our suggested value</mat-hint>
+        </mat-form-field>
 
-          <div>
-            <button type="submit" mat-button mat-raised-button color="accent">
-              <mat-icon>save</mat-icon> Save
-            </button>
+        <mat-form-field>
+          <input type="number" name="ACMonthlyCost" placeholder="Monthly Cost ($)" [(ngModel)]="electricityData.monthlyTotal"
+            readonly matInput>
 
-          </div>
-       
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="ACYearlyCost" placeholder="Yearly Cost ($)" [(ngModel)]="electricityData.yearlyTotal"
+            readonly matInput>
+
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="ACCO2" placeholder="CO2 Equivalence" [(ngModel)]="electricityData.co2" readonly
+            matInput>
+        </mat-form-field>
+
+        <div>
+          <button type="submit" mat-button mat-raised-button color="accent">
+            <mat-icon>save</mat-icon> Save
+          </button>
+
+        </div>
+
       </form>
     </div>
-      </mat-tab>
-    
-  <mat-tab label="Water Heater">  
-      <div style ="padding: 10px;" >
-     <h1 id = "title" >Electricity</h1>
-    <h2>2. Water Heaters</h2>
-    <p>Water Heaters are the 2nd most energy intensive appliances in Singapore households. Find out how costly your usage is:</p>
-    <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between" #waterHeaterForm="ngForm" (ngSubmit)="processWaterHeater()">
-    
-      
-      <mat-form-field>
-        <input type="number" name="WHqty" placeholder="Quantity" required matInput
-        required matInput [ngModel]="waterHeaterData.WHqty">
-        <mat-hint>Please enter the number of water heaters you have</mat-hint>
-        
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="WHhrs" placeholder="Number of Hours" required matInput 
-        required matInput [ngModel]="waterHeaterData.WHhrs">
-        <mat-hint>Please enter your average daily usage (hours)</mat-hint>
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="WHkWH" value = "3" placeholder="KiloWatts per Hour used" required matInput
-        required matInput readonly>
-        <mat-hint>This is our suggested value</mat-hint>
-      </mat-form-field>
+  </mat-tab>
 
-      <mat-form-field>
-          <input type="number" name="WHMonthlyCost" placeholder="Monthly Cost ($)" required matInput
-          [(ngModel)]="waterHeaterData.WHmonthlyTotal" readonly matInput>
+  <mat-tab label="Water Heater">
+    <div style="padding: 10px;">
+      <h1 id="title">Electricity</h1>
+      <h2>2. Water Heaters</h2>
+      <p>Water Heaters are the 2nd most energy intensive appliances in Singapore households. Find out how costly your
+        usage is:</p>
+      <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign="space-between" #waterHeaterForm="ngForm"
+        (ngSubmit)="processWaterHeater()">
+
+
+        <mat-form-field>
+          <input type="number" name="WHqty" placeholder="Quantity" required matInput required matInput [ngModel]="waterHeaterData.WHqty">
+          <mat-hint>Please enter the number of water heaters you have</mat-hint>
+
         </mat-form-field>
 
         <mat-form-field>
-            <input type="number" name="WHYearlyCost"  placeholder="Yearly Cost ($)" required matInput
-            [(ngModel)]="waterHeaterData.WHmonthlyTotal" readonly matInput>
-          </mat-form-field>
-
-          <mat-form-field>
-              <input type="number" name="WHCO2" placeholder="CO2 Equivalence" required matInput
-              [(ngModel)]="waterHeaterData.WHco2" readonly matInput>
-            </mat-form-field>
-            <div>
-              <button type="submit" mat-button mat-raised-button color="accent">
-                <mat-icon>save</mat-icon> Save
-              </button>
-  </div>
-           
-            
-          
-
-        
-      </form> 
-    </div>
-    </mat-tab>
-  <mat-tab label="Dryer">   
-      <div style ="padding: 10px;" >
-    <h1 id = "title"> Electricity</h1>
-  
-    <h2>3. Dryer</h2>
-    <p>Clothes Dryers are a huge part of your energy consumption and also one of the easiest to reduce. Find out how costly your usage is:</p>
-    <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between" #dryerForm="ngForm" (ngSubmit)="dryer()">
-    
-      
-      <mat-form-field>
-        <input type="number" name="CDqty" placeholder="Quantity" required matInput required matInput [ngModel]="dryerData.CDqty">
-        <mat-hint>Please enter the number of aircons you have</mat-hint>
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="CDhrs" placeholder="Number of Hours" required matInput required matInput [ngModel]="dryerData.CDhrs">
-        <mat-hint>Please enter your average daily usage (hours)</mat-hint>
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input type="number" name="CDkWH" value = "3" placeholder="KiloWatts per Hour used" required matInput
-        required matInput readonly>
-        <mat-hint>This is our suggested value</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field>
-          <input type="number" name="CDMonthlyCost" placeholder="Monthly Cost ($)" required matInput
-          [(ngModel)]="dryerData.CDmonthlyTotal" readonly matInput>
+          <input type="number" name="WHhrs" placeholder="Number of Hours" required matInput required matInput [ngModel]="waterHeaterData.WHhrs">
+          <mat-hint>Please enter your average daily usage (hours)</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
-            <input type="number" name="CDYearlyCost"  placeholder="Yearly Cost ($)" required matInput
-            [(ngModel)]="dryerData.CDyearlyTotal" readonly matInput>
-          </mat-form-field>
+          <input type="number" name="WHkWH" value="3" placeholder="KiloWatts per Hour used" required matInput required
+            matInput readonly>
+          <mat-hint>This is our suggested value</mat-hint>
+        </mat-form-field>
 
-          <mat-form-field>
-              <input type="number" name="CDCO2" placeholder="CO2 Equivalence" required matInput
-              [(ngModel)]="dryerData.CDco2" readonly matInput>
-            </mat-form-field>
-            <button type="submit" mat-button mat-raised-button color="accent">
-              <mat-icon>save</mat-icon> Save
-            </button>
+        <mat-form-field>
+          <input type="number" name="WHMonthlyCost" placeholder="Monthly Cost ($)" required matInput [(ngModel)]="waterHeaterData.WHmonthlyTotal"
+            readonly matInput>
+        </mat-form-field>
 
-        <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
-          submit
-        </button>
-      </form> 
+        <mat-form-field>
+          <input type="number" name="WHYearlyCost" placeholder="Yearly Cost ($)" required matInput [(ngModel)]="waterHeaterData.WHmonthlyTotal"
+            readonly matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="WHCO2" placeholder="CO2 Equivalence" required matInput [(ngModel)]="waterHeaterData.WHco2"
+            readonly matInput>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-button mat-raised-button color="accent">
+            <mat-icon>save</mat-icon> Save
+          </button>
+        </div>
+
+      </form>
     </div>
-    </mat-tab>
-      
-      
+  </mat-tab>
+  <mat-tab label="Dryer">
+    <div style="padding: 10px;">
+      <h1 id="title"> Electricity</h1>
+
+      <h2>3. Dryer</h2>
+      <p>Clothes Dryers are a huge part of your energy consumption and also one of the easiest to reduce. Find out how
+        costly your usage is:</p>
+      <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign="space-between" #dryerForm="ngForm" (ngSubmit)="dryer()">
+
+
+        <mat-form-field>
+          <input type="number" name="CDqty" placeholder="Quantity" required matInput required matInput [ngModel]="dryerData.CDqty">
+          <mat-hint>Please enter the number of aircons you have</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="CDhrs" placeholder="Number of Hours" required matInput required matInput [ngModel]="dryerData.CDhrs">
+          <mat-hint>Please enter your average daily usage (hours)</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="CDkWH" value="3" placeholder="KiloWatts per Hour used" required matInput required
+            matInput readonly>
+          <mat-hint>This is our suggested value</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="CDMonthlyCost" placeholder="Monthly Cost ($)" required matInput [(ngModel)]="dryerData.CDmonthlyTotal"
+            readonly matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="CDYearlyCost" placeholder="Yearly Cost ($)" required matInput [(ngModel)]="dryerData.CDyearlyTotal"
+            readonly matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" name="CDCO2" placeholder="CO2 Equivalence" required matInput [(ngModel)]="dryerData.CDco2"
+            readonly matInput>
+        </mat-form-field>
+        <div fxLayoutAlign="space-around">
+          <button type="button" mat-button mat-raised-button color="accent" (click)="exportData()">
+            <mat-icon>import_export</mat-icon> Export
+          </button>
+
+          <button type="submit" mat-button mat-raised-button color="accent">
+            <mat-icon>save</mat-icon> Save
+          </button>
+
+          <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
+            <mat-icon>list</mat-icon>
+            Summary
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-tab>
+
+
 </mat-tab-group>
