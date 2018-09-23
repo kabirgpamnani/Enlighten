@@ -1,10 +1,22 @@
-<div id="toBeExported">
-  {{ electricityCSV }} <br>
-  {{ waterCSV }} <br>
-  {{ dryerCSV }} 
-</div>
+<div #toBeExported class="space-10">
+  <form #summaryForm="ngForm" fxLayout="column row" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <textarea name="summaryData" cols="100" rows="5" 
+          #summaryData
+          matInput [ngModel]="all" readonly>
+      </textarea>
+    </mat-form-field>
+  </form>
 
-<button type="button" mat-raised-button color="accent" (click)="exportIt()">
-  <mat-icon>file_copy</mat-icon>
-  Copy
-</button>
+<div class="space-10" fxLayoutAlign="space-between">
+  <button type="button" mat-raised-button color="accent" 
+      [disabled]="!hasShare" (click)="share()">
+    <mat-icon>share</mat-icon>
+    Share
+  </button>
+  <button type="button" (click)="copyIt(summaryForm, summaryData)" mat-raised-button 
+      color="accent">
+    <mat-icon>file_copy</mat-icon>
+    Copy 
+  </button>
+</div>

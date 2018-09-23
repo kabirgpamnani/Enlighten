@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EnlightenService } from '../enlighten.service';
 import { ElectricityData, WaterHeaterData, DryerData } from '../model';
+import { PieSlice } from './pie-chart.component';
+
+const LABELS = [ 'Electricity', 'Water Heater', 'Dryer'];
 
 
 @Component({
@@ -37,20 +40,37 @@ export class EtotalsComponent implements OnInit {
           name: 'Monthly Total',
           data: this.normalize(this.monthlyTotal, 
             [ this.electricity.monthlyTotal, this.waterHeater.WHmonthlyTotal,
-              this.dryer.CDmonthlyTotal ])
+              this.dryer.CDmonthlyTotal ], LABELS)
         });
           
         this.yearlyTotal = this.electricity.yearlyTotal +
             this.waterHeater.WHyearlyTotal + this.dryer.CDyearlyTotal;
+        this.pieData.push({
+          name: 'Yearly Total',
+          data: this.normalize(this.yearlyTotal, 
+            [ this.electricity.yearlyTotal, this.waterHeater.WHyearlyTotal,
+              this.dryer.CDyearlyTotal ], LABELS)
+        });
+
         this.co2Total = this.electricity.co2 + 
             this.waterHeater.WHco2 + this.dryer.CDco2;
+        this.pieData.push({
+          name: 'CO2 Emission',
+          data: this.normalize(this.co2Total, 
+            [ this.electricity.co2, this.waterHeater.WHco2,
+              this.dryer.CDco2 ], LABELS)
+        });
       })
   }
 
-  normalize(total: number, data: number[]): number[] {
-    const normData: number[] = []
-    for (let d of data)
-      normData.push(d / total)
+  normalize(total: number, data: number[], label: string[]): PieSlice[] {
+    const normData: PieSlice[] = []
+    for (let i in data) {
+      normData.push({
+        name: label[i],
+        y: Math.round((data[i] / total) * 100)
+      })
+    }
     return (normData);
   }
   submit() {

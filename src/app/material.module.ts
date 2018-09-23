@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { ChartModule } from 'angular-highcharts'
 import { FlexLayoutModule } from  '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list'
@@ -12,6 +13,7 @@ import {MatSliderModule} from '@angular/material/slider';
 
 
 const MODULES = [
+    ChartModule,
     FlexLayoutModule,
     MatToolbarModule, MatListModule, MatSidenavModule,
     MatIconModule, MatInputModule, MatFormFieldModule,
