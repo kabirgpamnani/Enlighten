@@ -58,6 +58,7 @@
       </mat-tab>
     
   <mat-tab label="Water Heater">  
+      <div style ="padding: 10px;" >
      <h1 id = "title" >Electricity</h1>
     <h2>2. Water Heaters</h2>
     <p>Water Heaters are the 2nd most energy intensive appliances in Singapore households. Find out how costly your usage is:</p>
@@ -101,12 +102,19 @@
               <button type="submit" mat-button mat-raised-button color="accent">
                 <mat-icon>save</mat-icon> Save
               </button>
-  
-            </div>
+  </div>
+           
+            
+          
 
         
-      </form> </mat-tab>
-  <mat-tab label="Dryer">   <h1 id = "title" >Electricity</h1>
+      </form> 
+    </div>
+    </mat-tab>
+  <mat-tab label="Dryer">   
+      <div style ="padding: 10px;" >
+    <h1 id = "title"> Electricity</h1>
+  
     <h2>3. Dryer</h2>
     <p>Clothes Dryers are a huge part of your energy consumption and also one of the easiest to reduce. Find out how costly your usage is:</p>
     <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between" #dryerForm="ngForm" (ngSubmit)="dryer()">
@@ -149,7 +157,9 @@
         <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
           submit
         </button>
-      </form> </mat-tab>
+      </form> 
+    </div>
+    </mat-tab>
       
       
 </mat-tab-group>

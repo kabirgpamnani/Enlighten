@@ -1,3 +1,7 @@
 #enlighten-logo {
     width:90vw;
+    position: center;
+}
+body{
+    margin: 10;
 }

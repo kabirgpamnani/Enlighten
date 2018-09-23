@@ -1,20 +1,51 @@
+
+
 <mat-tab-group>
   <mat-tab label="Reduce">
-    <h3>Electricity</h3>
+      <h1>Reduce</h1>
+    <h3>Airconditioner Savings</h3>
+    <p>Move the slider to see how much you can save</p>
+    <p>If you change your aircon usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" max="100"
-        (change)="reduceElectricity($event)">
+        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
+      
     </mat-slider>
-    <span>{{ reducedElectricity }}</span>
+    <h3>Water Heater Savings</h3>
+    <p>Move the slider to see how much you can save</p>
+    <p>If you change your water heater usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
+    <mat-slider thumbLabel [displayWith]="formatLabel" 
+        tickInterval="1" min="0" max="100"
+        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
+      
+    </mat-slider>
+    <h3>Clothes Dryer Savings</h3>
+    <p>Move the slider to see how much you can save</p>
+    <p>If you change your clothes dryer usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
+    <mat-slider thumbLabel [displayWith]="formatLabel" 
+        tickInterval="1" min="0" max="100"
+        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
+      
+    </mat-slider>
+
+
+    
+   
+
   </mat-tab>
 
   <mat-tab label="Replenish">
     <h2>Replenish</h2>
+<h4>Incase you find it difficult to reduce your electricity consumption, an alternative is to continue consuming at the same level but plant trees instead to offset your C02 emissions.</h4>
+<h3>1 tonne of CO2 emitted can be replenished by 1 tree</h3>
+<h4>Airconditioner</h4>
+<p>Your total CO2 emissions for your airconditioner = </p>
+
 
   </mat-tab>
 
 </mat-tab-group>
-<h1>Reduce</h1>
+
 
 
 

@@ -78,6 +78,7 @@ waterHeaterData: WaterHeaterData = {
         this.electricityData.monthlyTotal = acQty * 1.5 * acHrs * 30 * 0.23;
         this.electricityData.yearlyTotal = this.electricityData.monthlyTotal * 12;
         this.electricityData.co2 = this.electricityData.monthlyTotal * 0.2;
+        
       }
       
     )

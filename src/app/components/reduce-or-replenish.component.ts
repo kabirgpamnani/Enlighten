@@ -15,6 +15,7 @@ export class ReduceOrReplenishComponent implements OnInit {
   dryer: DryerData;
 
   reducedElectricity = 0.0;
+  numHrs = 0;
 
   constructor(private enlightenSvc: EnlightenService) { }
 
@@ -28,6 +29,7 @@ export class ReduceOrReplenishComponent implements OnInit {
 
         //Initialize all reductions
         this.reducedElectricity = this.electricity.yearlyTotal;
+        this.numHrs = this.electricity.AChrs;
       })
   }
 
@@ -35,15 +37,26 @@ export class ReduceOrReplenishComponent implements OnInit {
     return (val);
   }
 
+
   reduceElectricity(event: MatSliderChange) {
     let percentage = event.value;
     if (event.value == 0) {
-        this.reducedElectricity = this.electricity.yearlyTotal;
+        this.reducedElectricity = Math.round(this.electricity.yearlyTotal*100)/100;
         return;
     }
+   
     percentage = 100 - percentage;
     this.reducedElectricity = this.electricity.yearlyTotal * (percentage/100);
     this.reducedElectricity = Math.round(this.reducedElectricity * 100)/100;
+    
   }
-
+  reduceHours(event: MatSliderChange ) {
+    let hours = event.value;
+    if (event.value ==0) {
+      this.numHrs = this.electricity.AChrs;
+      return;
+    }
+    this.numHrs = this.electricity.AChrs * (hours/100);
+  }
 }
+
