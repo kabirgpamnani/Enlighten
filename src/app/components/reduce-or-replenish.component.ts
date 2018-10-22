@@ -22,7 +22,10 @@ export class ReduceOrReplenishComponent implements OnInit {
   maxWH = 0;
   maxCD = 0;
 
-  readonly YEARLYACCONSTANT = 1.5 * 30 * 0.23 *12;
+  co2Total = 0;
+  co2Trees = 0;
+
+  readonly YEARLYACCONSTANT = 1.5 * 30 * 0.23 * 12;
 
   constructor(private enlightenSvc: EnlightenService) { }
 
@@ -44,6 +47,9 @@ export class ReduceOrReplenishComponent implements OnInit {
 
         //Initiaize all hours
         this.acNumHrs = this.electricity.AChrs;
+
+        this.co2Total = this.electricity.co2 +
+          this.waterHeater.WHco2 + this.dryer.CDco2;
       })
   }
 
@@ -53,29 +59,29 @@ export class ReduceOrReplenishComponent implements OnInit {
 
 
   reduceElectricity(event: MatSliderChange) {
-    let percentage = event.value ;
-    this.reducedElectricity = Math.round(percentage*this.electricity.ACqty* this.YEARLYACCONSTANT * 100)/100;
+    let percentage = event.value;
+    this.reducedElectricity = Math.round(percentage * this.electricity.ACqty * this.YEARLYACCONSTANT * 100) / 100;
 
-   // if (event.value == 0) {
-   //     this.reducedElectricity = Math.round(this.electricity.yearlyTotal*100)/100;
-        
+    // if (event.value == 0) {
+    //     this.reducedElectricity = Math.round(this.electricity.yearlyTotal*100)/100;
+
     //    return;
-   // }
-   
-  //  percentage = 100 - percentage;
-  //  this.reducedElectricity = this.electricity.yearlyTotal * (percentage/100);
-  //  this.reducedElectricity = Math.round(this.reducedElectricity * 100)/100;
+    // }
+
+    //  percentage = 100 - percentage;
+    //  this.reducedElectricity = this.electricity.yearlyTotal * (percentage/100);
+    //  this.reducedElectricity = Math.round(this.reducedElectricity * 100)/100;
 
     this.acNumHrs = event.value;
-    
+
   }
-  reduceHours(event: MatSliderChange ) {
+  reduceHours(event: MatSliderChange) {
     let hours = event.value;
-    if (event.value ==0) {
+    if (event.value == 0) {
       this.acNumHrs = this.electricity.AChrs;
       return;
     }
-    this.numHrs = this.electricity.AChrs * (hours/100);
+    this.numHrs = this.electricity.AChrs * (hours / 100);
   }
 }
 
