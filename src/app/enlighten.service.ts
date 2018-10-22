@@ -2,19 +2,50 @@ import Dexie from 'dexie';
 import { ElectricityData } from './model';
 import { WaterHeaterData } from './model';
 import { DryerData } from './model';
+import { CarData } from './model';
 
 export class EnlightenService {
 
+
     db = new Dexie('enlightendb');
 
+
+
     constructor() {
+        console.info('in create db')
         this.db.version(1).stores({
             //Schema - one for each category - go and delete the database
-            electricity: "name,ACqty,AChrs,ACkWH,monthlyTotal,yearlyTotal,co2",
-            waterHeater: "name,WHqty, WHhrs, WHmonthlyTotal,WHyearlyTotal,WHco2",
-            dryer: "name,CDqty, CDhrs, CDmonthylTotal,CDyearlyTotal,CDco2",
+            electricity: "name,ACqty, AChrs,ACkWH, monthlyTotal, yearlyTotal, co2",
+            waterHeater: "name, WHqty, WHhrs, WHkWH, WHmonthlyTotal, WHyearlyTotal,WHco2",
+            dryer: "name, CDqty, CDhrs, CDkWH, CDmonthlyTotal, CDyearlyTotal,CDco2",
+            car: "name,Cqty, Chrs, CmonthlyTotal, CyearlyTotal, Cco2",
+
         });
-        this.db.open();
+        //this.db.open();
+    }
+
+    updateCar(data:CarData): Promise<any> {
+        return(this.db['car'].put(data));
+    }
+    getCar():Promise<CarData[]>{
+        return(
+            this.db['car']
+                .where('name').equals('car')
+                .toArray()
+                .then(result => {
+                    if (!result.length)
+                        result.push({
+                            name: 'car',
+                            Cqty: 0,
+                            Chrs: 0,
+                            CmonthlyTotal: 0,
+                            CyearlyTotal: 0,
+                            Cco2: 0,
+                            
+                        })
+                    return (result);    
+            })
+        );
     }
 
     updateElectricity(data: ElectricityData): Promise<any> {
@@ -114,7 +145,8 @@ export class EnlightenService {
 		const promises = [];
 		promises.push(this.getElectricity())
 		promises.push(this.getWaterHeater())
-		promises.push(this.getDryer())
+        promises.push(this.getDryer())
+        promises.push(this.getCar())
 
 			//Now wait for all the promises to resolve. See 
 			//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all

@@ -1,1 +1,51 @@
+<mat-tab-group >
+    <mat-tab label="Car"> 
+      <div style ="padding: 10px;" >
+     <div fxLayoutAlign = "center" > 
+       <h1 id = "title" >Car</h1> </div>
+      <h2>1. Cars</h2>
+      <p>Let's evaluate your Car Usage! Find out how costly your usage is:</p>
+  
+      <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between"
+          #carForm="ngForm" (ngSubmit)="saveCar()">
+      
+        <mat-form-field>
+          <input type="number" name="CQty" placeholder="Quantity" 
+              required matInput [ngModel]="carData.Cqty">
+          <mat-hint>Please enter the number of cars you have</mat-hint>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <input type="number" name="CHrs" placeholder="Number of Hours" 
+              required matInput [ngModel]="carData.Chrs">
+          <mat-hint>Please enter your average daily usage (hours)</mat-hint>
+        </mat-form-field>
+          <mat-form-field>
+              <input type="number" name="CMonthlyCost" placeholder="Monthly Cost ($)" 
+                  [(ngModel)]="carData.CmonthlyTotal" readonly matInput >
+              
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input type="number" name="CYearlyCost"  placeholder="Yearly Cost ($)" 
+                    [(ngModel)]="carData.CyearlyTotal" readonly matInput>
+                
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input type="number" name="CCo2" placeholder="CO2 Equivalence" 
+                    [(ngModel)]="carData.Cco2" readonly matInput>
+                </mat-form-field>
+    
+              <div>
+                <button type="submit" mat-button mat-raised-button color="accent">
+                  <mat-icon>save</mat-icon> Save
+                </button>
+    
+              </div>
+           
+          </form>
+        </div>
+          </mat-tab>
+        </mat-tab-group>
 

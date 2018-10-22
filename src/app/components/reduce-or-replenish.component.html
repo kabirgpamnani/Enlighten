@@ -6,15 +6,16 @@
       <h1>Reduce</h1>
     <h3>Airconditioner Savings</h3>
     <p>Move the slider to see how much you can save</p>
-    <p>If you change your aircon usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
+    <p>If you change your aircon usage to <span>{{ acNumHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity | currency }} </span></p>
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxAC" thumbLabel
-        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
+        (change)="reduceElectricity($event)">
       
     </mat-slider>
     <h3>Water Heater Savings</h3>
     <p>Move the slider to see how much you can save</p>
     <p>If you change your water heater usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
+    <!-- add reduce water -->
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxWH" thumbLabel
         (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
@@ -23,6 +24,7 @@
     <h3>Clothes Dryer Savings</h3>
     <p>Move the slider to see how much you can save</p>
     <p>If you change your clothes dryer usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
+    <!-- add reduce dryer -->
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxCD" thumbLabel
         (change)="reduceElectricity($event)"  (change)="reduceHours($event)">

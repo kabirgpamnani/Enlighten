@@ -16,6 +16,7 @@ import { ReduceOrReplenishComponent } from './components/reduce-or-replenish.com
 import { EnlightenService } from './enlighten.service';
 import { PieChartComponent } from './components/pie-chart.component';
 import { ExportComponent } from './components/export.component';
+import { CarReduceOrReplenishComponent } from './components/car-reduce-or-replenish.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ExportComponent } from './components/export.component';
     ReduceOrReplenishComponent,
     PieChartComponent,
     ExportComponent,
-    
+    CarReduceOrReplenishComponent,
   ],
   //Imports all exported components @NgModule({ exports: [ ... ]})
   imports: [

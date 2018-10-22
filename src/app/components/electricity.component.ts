@@ -23,22 +23,22 @@ export class ElectricityComponent implements OnInit, OnDestroy {
 
   dryerData: DryerData = {
 
-name: 'dryer',
-CDqty: 0,
-CDhrs: 0,
-CDkWH: 3,
-CDmonthlyTotal: 0,
-CDyearlyTotal: 0,
-CDco2: 0
+    name: 'dryer',
+    CDqty: 0,
+    CDhrs: 0,
+    CDkWH: 3,
+    CDmonthlyTotal: 0,
+    CDyearlyTotal: 0,
+    CDco2: 0
 
 
 
 
   }
 
-@ViewChild('waterHeaterForm') WaterHeaterForm: NgForm;
+  @ViewChild('waterHeaterForm') WaterHeaterForm: NgForm;
 
-waterHeaterData: WaterHeaterData = {
+  waterHeaterData: WaterHeaterData = {
     name: 'waterHeater',
     WHqty: 0,
     WHhrs: 0,
@@ -47,11 +47,11 @@ waterHeaterData: WaterHeaterData = {
     WHyearlyTotal: 0,
     WHco2: 0
 
-}
+  }
 
   @ViewChild('electricityForm') electricityForm: NgForm;
 
-  electricityData: ElectricityData  = {
+  electricityData: ElectricityData = {
     name: 'electricity',
     ACqty: 0,
     AChrs: 0,
@@ -59,18 +59,19 @@ waterHeaterData: WaterHeaterData = {
     monthlyTotal: 0,
     yearlyTotal: 0,
     co2: 0
-    
+
   };
 
 
   constructor(private router: Router, private enlightenSvc: EnlightenService) { }
 
   //Called when component is created
-  ngOnInit() { 
+  ngOnInit() {
     this.formSub = this.electricityForm.valueChanges.subscribe(
       //When the form is changed, this function will be called
       //Update calulation when form data changes
       (val) => {
+        console.info('>>> elec form changes')
         const acQty = val.ACqty || 0;
         const acHrs = val.AChrs || 0;
         this.electricityData.ACqty = acQty;
@@ -78,43 +79,43 @@ waterHeaterData: WaterHeaterData = {
         this.electricityData.monthlyTotal = acQty * 1.5 * acHrs * 30 * 0.23;
         this.electricityData.yearlyTotal = this.electricityData.monthlyTotal * 12;
         this.electricityData.co2 = this.electricityData.monthlyTotal * 0.2;
-        
+        console.info('done')
       }
-      
+
     )
     this.formSub = this.dryerForm.valueChanges.subscribe(
-        //When the form is changed, this function will be called
-        //Update calulation when form data changes
-        (val) => {
-          const cdQty = val.CDqty || 0;
-          const cdHrs = val.CDhrs || 0;
-          this.dryerData.CDqty = cdQty;
-          this.dryerData.CDhrs = cdHrs;
-          this.dryerData.CDmonthlyTotal = cdQty * 1.5 * cdHrs * 30 * 0.23;
-          this.dryerData.CDyearlyTotal = this.dryerData.CDmonthlyTotal * 12;
-          this.dryerData.CDco2 = this.dryerData.CDmonthlyTotal * 0.2;
-        }
-        
-      )
+      //When the form is changed, this function will be called
+      //Update calulation when form data changes
+      (val) => {
+        const cdQty = val.CDqty || 0;
+        const cdHrs = val.CDhrs || 0;
+        this.dryerData.CDqty = cdQty;
+        this.dryerData.CDhrs = cdHrs;
+        this.dryerData.CDmonthlyTotal = cdQty * 1.5 * cdHrs * 30 * 0.23;
+        this.dryerData.CDyearlyTotal = this.dryerData.CDmonthlyTotal * 12;
+        this.dryerData.CDco2 = this.dryerData.CDmonthlyTotal * 0.2;
+      }
+
+    )
     this.formSub = this.WaterHeaterForm.valueChanges.subscribe(
-        (val) => {
-            const whQty = val.WHqty || 0;
+      (val) => {
+        const whQty = val.WHqty || 0;
         const whHrs = val.WHhrs || 0;
         this.waterHeaterData.WHqty = whQty;
         this.waterHeaterData.WHhrs = whHrs;
         this.waterHeaterData.WHmonthlyTotal = whQty * 3 * whHrs * 30 * 0.23;
         this.waterHeaterData.WHyearlyTotal = this.waterHeaterData.WHmonthlyTotal * 12;
         this.waterHeaterData.WHco2 = this.waterHeaterData.WHmonthlyTotal * 0.2;
-        }
+      }
     )
 
     this.enlightenSvc.getAllData()
-        .then(results => {
-          console.log('results: ', results);
-          this.electricityData = results[0];
-          this.waterHeaterData = results[1];
-          this.dryerData = results[2];
-        })
+      .then(results => {
+        console.log('results: ', results);
+        this.electricityData = results[0];
+        this.waterHeaterData = results[1];
+        this.dryerData = results[2];
+      })
 
     // Monad
     /*
@@ -136,20 +137,20 @@ waterHeaterData: WaterHeaterData = {
     this.formSub.unsubscribe();
   }
   processWaterHeater() {
-      console.log('saving values')
+    console.log('saving values')
 
-      console.log(this.waterHeaterData);
-      const promise = this.enlightenSvc.updateWaterHeater(this.waterHeaterData);
-      promise.then(() => {
-        console.log('we have save the data')
-      });
-      //reject/bad -> catch will be called
-      promise.catch((err) => {
-        console.error('Update error: ', err);
-      });
+    console.log(this.waterHeaterData);
+    const promise = this.enlightenSvc.updateWaterHeater(this.waterHeaterData);
+    promise.then(() => {
+      console.log('we have save the data')
+    });
+    //reject/bad -> catch will be called
+    promise.catch((err) => {
+      console.error('Update error: ', err);
+    });
   }
-  
-  
+
+
   dryer() {
     console.log('saving values')
     const promise = this.enlightenSvc.updateDryer(this.dryerData);
@@ -161,7 +162,7 @@ waterHeaterData: WaterHeaterData = {
       console.error('Update error: ', err);
     });
   }
-  
+
 
   saveValues() {
     console.log('saving values to database: ', this.electricityData);

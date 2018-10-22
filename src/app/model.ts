@@ -26,3 +26,11 @@ export interface DryerData {
     CDyearlyTotal: number;
     CDco2: number;
 }
+export interface CarData {
+    name: string;
+    Cqty: number;
+    Chrs: number;
+    CmonthlyTotal: number;
+    CyearlyTotal: number;
+    Cco2: number;
+}
