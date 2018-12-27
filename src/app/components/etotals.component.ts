@@ -34,32 +34,22 @@ export class EtotalsComponent implements OnInit {
         this.electricity = data[0] as ElectricityData;
         this.waterHeater = data[1] as WaterHeaterData;
         this.dryer = data[2] as DryerData;
-        this.monthlyTotal = this.electricity.monthlyTotal + 
-            this.waterHeater.WHmonthlyTotal + this.dryer.CDmonthlyTotal;
+        this.monthlyTotal = Math.round((this.electricity.monthlyTotal + 
+            this.waterHeater.WHmonthlyTotal + this.dryer.CDmonthlyTotal)*100)/100;
         this.pieData.push({
-          name: 'Monthly Total',
+          name: 'Breakdown of Total',
           data: this.normalize(this.monthlyTotal, 
             [ this.electricity.monthlyTotal, this.waterHeater.WHmonthlyTotal,
               this.dryer.CDmonthlyTotal ], LABELS)
         });
           
-        this.yearlyTotal = this.electricity.yearlyTotal +
-            this.waterHeater.WHyearlyTotal + this.dryer.CDyearlyTotal;
-        this.pieData.push({
-          name: 'Yearly Total',
-          data: this.normalize(this.yearlyTotal, 
-            [ this.electricity.yearlyTotal, this.waterHeater.WHyearlyTotal,
-              this.dryer.CDyearlyTotal ], LABELS)
-        });
+        this.yearlyTotal = Math.round((this.electricity.yearlyTotal +
+            this.waterHeater.WHyearlyTotal + this.dryer.CDyearlyTotal)*100)/100;
+      
 
-        this.co2Total = this.electricity.co2 + 
-            this.waterHeater.WHco2 + this.dryer.CDco2;
-        this.pieData.push({
-          name: 'CO2 Emission',
-          data: this.normalize(this.co2Total, 
-            [ this.electricity.co2, this.waterHeater.WHco2,
-              this.dryer.CDco2 ], LABELS)
-        });
+        this.co2Total = Math.round((this.electricity.co2 + 
+            this.waterHeater.WHco2 + this.dryer.CDco2)*100)/100;
+      
       })
   }
 

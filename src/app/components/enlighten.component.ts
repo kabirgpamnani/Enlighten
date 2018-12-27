@@ -15,5 +15,8 @@ export class EnlightenComponent implements OnInit {
   goto(route: string) {
     this.router.navigate(['/electricity-totals', route]);
   }
+  submit() {
+    this.router.navigate(['/electricity']); 
+  }
 
 }

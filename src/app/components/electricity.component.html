@@ -1,15 +1,16 @@
+<body>
 <mat-tab-group>
   <mat-tab label="Airconditioner">
     <div style="padding: 10px;">
       <div fxLayoutAlign="center">
-        <h1 id="title">Electricity</h1>
+        <div class = "title"><h1>Electricity</h1> </div>
       </div>
-      <h2>1. Airconditioners</h2>
+      <h2> 1. Airconditioners</h2>
       <p>Let's start with the Airconditioner! ACs are the most energy intensive appliances in Singapore households.
         Find out how costly your usage is:</p>
 
       <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign="space-between" #electricityForm="ngForm"
-        (ngSubmit)="saveValues()">
+        (ngSubmit)="saveValues()"> <!--Call saveValues() function when button is clicked-->
 
         <mat-form-field>
           <input type="number" name="ACqty" placeholder="Quantity" required matInput [ngModel]="electricityData.ACqty">
@@ -40,13 +41,13 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input type="number" name="ACCO2" placeholder="CO2 Equivalence" [(ngModel)]="electricityData.co2" readonly
+          <input type="number" name="ACCO2" placeholder="Annual CO2 Tonnes emitted" [(ngModel)]="electricityData.co2" readonly
             matInput>
         </mat-form-field>
 
-        <div>
-          <button type="submit" mat-button mat-raised-button color="accent">
-            <mat-icon>save</mat-icon> Save
+        <div> <!--HTML for creating save button-->
+          <button type="submit" mat-button mat-raised-button color="accent"> 
+            <mat-icon>save</mat-icon> Save 
           </button>
 
         </div>
@@ -57,7 +58,9 @@
 
   <mat-tab label="Water Heater">
     <div style="padding: 10px;">
-      <h1 id="title">Electricity</h1>
+        <div fxLayoutAlign="center">
+            <div class = "title"><h1>Electricity</h1> </div>
+          </div>
       <h2>2. Water Heaters</h2>
       <p>Water Heaters are the 2nd most energy intensive appliances in Singapore households. Find out how costly your
         usage is:</p>
@@ -77,7 +80,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input type="number" name="WHkWH" value="3" placeholder="KiloWatts per Hour used" required matInput required
+          <input type="number" name="WHkWH" value="3" placeholder="KiloWatt Hours used" required matInput required
             matInput readonly>
           <mat-hint>This is our suggested value</mat-hint>
         </mat-form-field>
@@ -88,12 +91,12 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input type="number" name="WHYearlyCost" placeholder="Yearly Cost ($)" required matInput [(ngModel)]="waterHeaterData.WHmonthlyTotal"
+          <input type="number" name="WHYearlyCost" placeholder="Yearly Cost ($)" required matInput [(ngModel)]="waterHeaterData.WHyearlyTotal"
             readonly matInput>
         </mat-form-field>
 
         <mat-form-field>
-          <input type="number" name="WHCO2" placeholder="CO2 Equivalence" required matInput [(ngModel)]="waterHeaterData.WHco2"
+          <input type="number" name="WHCO2" placeholder="Annual CO2 Tonnes emitted" required matInput [(ngModel)]="waterHeaterData.WHco2"
             readonly matInput>
         </mat-form-field>
         <div>
@@ -107,7 +110,10 @@
   </mat-tab>
   <mat-tab label="Dryer">
     <div style="padding: 10px;">
-      <h1 id="title"> Electricity</h1>
+        <div fxLayoutAlign="center">
+            <div class = "title"><h1>Electricity</h1> </div>
+          </div>
+     
 
       <h2>3. Dryer</h2>
       <p>Clothes Dryers are a huge part of your energy consumption and also one of the easiest to reduce. Find out how
@@ -142,16 +148,16 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input type="number" name="CDCO2" placeholder="CO2 Equivalence" required matInput [(ngModel)]="dryerData.CDco2"
+          <input type="number" name="CDCO2" placeholder="Annual CO2 Tonnes emitted" required matInput [(ngModel)]="dryerData.CDco2"
             readonly matInput>
         </mat-form-field>
         <div fxLayoutAlign="space-around">
+            <button type="submit" mat-button mat-raised-button color="accent">
+                <mat-icon>save</mat-icon> Save
+              </button>
+
           <button type="button" mat-button mat-raised-button color="accent" (click)="exportData()">
             <mat-icon>import_export</mat-icon> Export
-          </button>
-
-          <button type="submit" mat-button mat-raised-button color="accent">
-            <mat-icon>save</mat-icon> Save
           </button>
 
           <button type="button" mat-button mat-raised-button color="accent" (click)="submit()">
@@ -165,3 +171,4 @@
 
 
 </mat-tab-group>
+</body>

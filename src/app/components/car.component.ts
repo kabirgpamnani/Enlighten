@@ -15,17 +15,21 @@ import { EnlightenService } from '../enlighten.service';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit, OnDestroy {
-
+  
+  
   formSub: Subscription;
   @ViewChild('carForm') carForm: NgForm;
+
+  
 
   carData: CarData = {
     name: 'car',
     Cqty: 0,
-    Chrs: 0,
-    CmonthlyTotal: 0,
-    CyearlyTotal: 0,
-    Cco2: 0,
+    Cmiles: 0,
+    CCO2monthlyTotal: 0,
+    CCO2yearlyTotal: 0,
+    
+   
 
   }
 
@@ -42,12 +46,12 @@ export class CarComponent implements OnInit, OnDestroy {
       //Update calulation when form data changes
       (val) => {
         const carQty = val.Cqty || 0;
-        const carHrs = val.Chrs || 0;
+        const carMiles = val.Chrs || 0;
         this.carData.Cqty = carQty;
-        this.carData.Chrs = carHrs;
-        this.carData.CmonthlyTotal = carQty * 1.5 * carHrs * 30 * 0.23;
-        this.carData.CyearlyTotal = this.carData.CmonthlyTotal * 12;
-        this.carData.Cco2 = this.carData.CmonthlyTotal * 0.2;
+        this.carData.Cmiles = carMiles;
+        this.carData.CCO2monthlyTotal = carQty * carMiles * 1.1 * 30;
+        this.carData.CCO2yearlyTotal = this.carData.CCO2monthlyTotal * 12;
+       
         
       }
 

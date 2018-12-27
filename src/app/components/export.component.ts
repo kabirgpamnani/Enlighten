@@ -34,7 +34,7 @@ export class ExportComponent implements OnInit {
           this.electricityData = results[0];
           this.waterHeaterData = results[1];
           this.dryerData = results[2];
-          this.electricityCSV = `electricity, ${this.electricityData.AChrs} ${this.electricityData.ACqty}, ` +
+          this.electricityCSV = `air conditioner, ${this.electricityData.AChrs} ${this.electricityData.ACqty}, ` +
             `${this.electricityData.co2}, ${this.electricityData.monthlyTotal}, ${this.electricityData.yearlyTotal}`
           this.dryerCSV = `dryer, ${this.dryerData.CDhrs} ${this.dryerData.CDqty}, ` +
             `${this.dryerData.CDco2}, ${this.dryerData.CDmonthlyTotal}, ${this.dryerData.CDyearlyTotal}`

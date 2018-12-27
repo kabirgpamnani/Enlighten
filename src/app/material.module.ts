@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatSelectModule} from '@angular/material/select';
 
 
 const MODULES = [
@@ -17,7 +18,7 @@ const MODULES = [
     FlexLayoutModule,
     MatToolbarModule, MatListModule, MatSidenavModule,
     MatIconModule, MatInputModule, MatFormFieldModule,
-    MatButtonModule, MatTabsModule, MatSliderModule
+    MatButtonModule, MatTabsModule, MatSliderModule, MatSelectModule
 ];
 
 @NgModule({

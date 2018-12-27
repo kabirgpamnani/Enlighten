@@ -1,34 +1,56 @@
 
-
+<body>
 <mat-tab-group>
   <mat-tab label="Reduce">
     <div class="margin-10">
-      <h1>Reduce</h1>
-    <h3>Airconditioner Savings</h3>
+      <div class = subtitle> <h1>Reduce</h1> </div>
+<div class = ACtips> 
+    <h3> Air Conditioner Tips:</h3> </div>
+ <p>1) Switch to fans! </p>
+  <p>2) If you can't completely follow no. 1, use the AC to cool the room before switching to a fan!</p>
+ <p>3) Increase temperature to 24ºC+</p>
+
+
+
+   <div class = ACtips> <h3>Airconditioner Savings:</h3> </div>
     <p>Move the slider to see how much you can save</p>
     <p>If you change your aircon usage to <span>{{ acNumHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity | currency }} </span></p>
+    <p>Savings = {{ ACsavings | currency}}</p>
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxAC" thumbLabel
         (change)="reduceElectricity($event)">
       
     </mat-slider>
-    <h3>Water Heater Savings</h3>
+
+    <div class = WHtips> 
+        <h3> Water Heater Tips:</h3> </div>
+     <p>1) Switch heater on right before you shower and switch it off right after! </p>
+      <p>2) Cut down on long, hot showers, take short, cold showers!</p>
+     
+   
+    
+    <div class = WHtips><h3>Water Heater Savings:</h3></div>
     <p>Move the slider to see how much you can save</p>
-    <p>If you change your water heater usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
-    <!-- add reduce water -->
+    <p>If you change your water heater usage to <span> {{ whNumHrs }}</span> hours a day, it will cost you: <span> {{ reducedWaterHeater | currency }} </span></p>
+    <p>Savings = {{ WHsavings | currency}}</p>
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxWH" thumbLabel
-        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
+        (change)="reduceWaterHeater($event)" ></mat-slider> 
       
-    </mat-slider>
-    <h3>Clothes Dryer Savings</h3>
+        <div class = CDtips> 
+            <h3> Clothes Dryer Tips:</h3> </div>
+         <p>1) Air Dry your clothes! </p>
+          <p>2) If you can't completely follow  no. 1, only use the dryer for heavier clothing items</p>
+       
+        
+   <div class = CDtips><h3>Clothes Dryer Savings:</h3></div> 
     <p>Move the slider to see how much you can save</p>
-    <p>If you change your clothes dryer usage to <span>{{ numHrs }} </span> hours a day, it will cost you: <span> {{ reducedElectricity }} </span></p>
-    <!-- add reduce dryer -->
+    <p>If you change your clothes dryer usage to <span>{{ cdNumHrs }} </span> hours a day, it will cost you: <span> {{ reducedDryer | currency }} </span></p>
+    <p>Savings = {{ CDsavings | currency}}</p>
     <mat-slider thumbLabel [displayWith]="formatLabel" 
         tickInterval="1" min="0" [max]="maxCD" thumbLabel
-        (change)="reduceElectricity($event)"  (change)="reduceHours($event)">
-    </mat-slider>
+        (change)="reduceDryer($event)" ></mat-slider>
+    
    
     </div>
 
@@ -36,12 +58,25 @@
 
   <mat-tab label="Replenish">
       <div class="margin-10">
-    <h2>Replenish</h2>
-<h4>Incase you find it difficult to reduce your electricity consumption, an alternative is to continue consuming at the same level but plant trees instead to offset your C02 emissions.</h4>
-<h3>1 tonne of CO2 emitted can be replenished by 5 trees</h3>
-<h4>Airconditioner</h4>
-<p>Your total CO2 emissions for your airconditioner = {{ co2Total }}</p>
-<p>Number of trees {{ co2Trees }}</p>
+   <div class = subtitle> <h1>Replenish</h1></div>
+<p>Alternatively, find out how many trees you need to plant to REPLENISH your CO2 emissions</p>
+<p>Conversion: 1 tonne of CO2 emitted = 5 trees</p>
+<div class = ACtips><h3>Air Conditioner:</h3></div>
+<p>Total CO2 emissions = {{ co2AC }}</p> 
+<p>Number of trees needed to plant = {{ co2ACTrees }}</p>
+<br>
+<div class = WHtips> <h3>Water Heater:</h3></div>
+<p>Total CO2 emissions = {{ co2WH }} </p>
+<p>Number of trees needed to plant =  {{ co2WHTrees }}</p>
+<br>
+<div class = CDtips><h3>Clothes Dryer:</h3></div>
+<p>Total CO2 emissions = {{ co2CD }} </p>
+<p>Number of trees needed to plant = {{ co2CDTrees }}</p>
+
+<div class = ACtips><h3>Total:</h3> </div>
+<p>
+Number of Trees needed to plant = {{ co2TreeTotal }}
+</p>
 </div>
 
 
@@ -49,7 +84,7 @@
 
 </mat-tab-group>
 
-
+</body>
 
 
 

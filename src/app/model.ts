@@ -29,8 +29,8 @@ export interface DryerData {
 export interface CarData {
     name: string;
     Cqty: number;
-    Chrs: number;
-    CmonthlyTotal: number;
-    CyearlyTotal: number;
-    Cco2: number;
+    Cmiles: number;
+    CCO2monthlyTotal: number;
+    CCO2yearlyTotal: number;
+    
 }

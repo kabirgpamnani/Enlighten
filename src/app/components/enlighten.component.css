@@ -4,4 +4,13 @@
 }
 body{
     margin: 10;
+    text-align: center;
+    color: green;
+
+
+}
+.subtitle {
+    font-weight: bold;
+    color: palevioletred;
+
 }

@@ -1,18 +1,20 @@
+<body>
+    <div class = "title"><h1>Electricity Totals</h1> </div>
 <div>
-  <h1>Electricity Totals</h1>
+    
   <form #form="ngForm" fxLayout="column">
     <h2>Electricity</h2>
     <mat-form-field>
-      <input type="number" placeholder="Monthly Total" readonly name="eMonthlyTotal"
+      <input type="number" placeholder="Monthly Total ($)" readonly name="eMonthlyTotal"
           matInput [ngModel]="monthlyTotal">
     </mat-form-field>
     <mat-form-field>
-      <input type="number" placeholder="Yearly Total" readonly name="eYearlyTotal"
+      <input type="number" placeholder="Yearly Total ($)" readonly name="eYearlyTotal"
           matInput [ngModel]="yearlyTotal">
     </mat-form-field>
 
     <mat-form-field>
-      <input type="number" placeholder="CO2" readonly name="eCO2"
+      <input type="number" placeholder="CO2 (tonnes)" readonly name="eCO2"
           matInput [ngModel]="co2Total">
     </mat-form-field>
 
@@ -26,3 +28,4 @@
   </button>
   
 </div>
+</body>

@@ -9,33 +9,33 @@
       <form fxLayout="column row" style="padding: 10px;" fxLayoutAlign = "space-between"
           #carForm="ngForm" (ngSubmit)="saveCar()">
       
+          <h4>Size</h4>
+          <mat-form-field>
+            
+            <select matNativeControl required>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </mat-form-field>
+
         <mat-form-field>
-          <input type="number" name="CQty" placeholder="Quantity" 
-              required matInput [ngModel]="carData.Cqty">
-          <mat-hint>Please enter the number of cars you have</mat-hint>
-        </mat-form-field>
-      
-        <mat-form-field>
-          <input type="number" name="CHrs" placeholder="Number of Hours" 
-              required matInput [ngModel]="carData.Chrs">
-          <mat-hint>Please enter your average daily usage (hours)</mat-hint>
+          <input type="number" name="CMILES" placeholder="Mileage" 
+              required matInput [ngModel]="carData.Cmiles">
+          <mat-hint>Please enter your average daily usage (miles)</mat-hint>
         </mat-form-field>
           <mat-form-field>
-              <input type="number" name="CMonthlyCost" placeholder="Monthly Cost ($)" 
-                  [(ngModel)]="carData.CmonthlyTotal" readonly matInput >
+              <input type="number" name="CMonthlyCO2" placeholder="Monthly CO2" 
+                  [(ngModel)]="carData.CCO2monthlyTotal" readonly matInput >
               
             </mat-form-field>
     
             <mat-form-field>
-                <input type="number" name="CYearlyCost"  placeholder="Yearly Cost ($)" 
-                    [(ngModel)]="carData.CyearlyTotal" readonly matInput>
+                <input type="number" name="CYearlyCO2"  placeholder="Yearly CO2" 
+                    [(ngModel)]="carData.CCO2yearlyTotal" readonly matInput>
                 
               </mat-form-field>
     
-              <mat-form-field>
-                <input type="number" name="CCo2" placeholder="CO2 Equivalence" 
-                    [(ngModel)]="carData.Cco2" readonly matInput>
-                </mat-form-field>
     
               <div>
                 <button type="submit" mat-button mat-raised-button color="accent">

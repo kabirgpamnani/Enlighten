@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-
+import { MatInputModule } from '@angular/material';
 //AppComponent is part of the generated code
 import { AppComponent } from './app.component';
 
@@ -33,7 +33,7 @@ import { CarReduceOrReplenishComponent } from './components/car-reduce-or-replen
   //Imports all exported components @NgModule({ exports: [ ... ]})
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule,
-    MaterialModule, AppRouteModule, 
+    MaterialModule, AppRouteModule, MatInputModule
   ],
   providers: [ EnlightenService ],
   bootstrap: [AppComponent]

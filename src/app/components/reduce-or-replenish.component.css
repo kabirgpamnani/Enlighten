@@ -3,4 +3,18 @@ mat-slider {
   }
 .margin-10 {
   margin: 10px;
+  color: green;
+}
+.subtitle {
+  color:palevioletred;
+  text-align: center;
+}
+.ACtips {
+  color:palevioletred;
+}
+.CDtips {
+  color:palevioletred;
+}
+.WHtips {
+  color:palevioletred;
 }

@@ -10,7 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav'
 })
 export class AppComponent {
 
-  labels = [ 'Enlighten', 'Electricity', 'Car', 'Food', 'Air Travel' ]
+  labels = [ 'Enlighten', 'Electricity', ]
 
   //Look for the reference sideMenu and inject into this class as MatSidenav
   @ViewChild('sideMenu') sideMenu: MatSidenav;

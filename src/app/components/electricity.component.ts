@@ -65,35 +65,40 @@ export class ElectricityComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private enlightenSvc: EnlightenService) { }
 
-  //Called when component is created
-  ngOnInit() {
-    this.formSub = this.electricityForm.valueChanges.subscribe(
+
+  ngOnInit() {  //Called when component is created - lifecycle method
+    this.enlightenSvc.getAllData() //calls method from enlighten.service
+    .then(results => { //gets all of the data from the database
+      this.electricityData = results[0]; //electricity data
+      this.waterHeaterData = results[1]; // WH data
+      this.dryerData = results[2]; // CD data
+    })
+    this.formSub = this.electricityForm.valueChanges.subscribe( //valueChanges allows for the form to change upon input
       //When the form is changed, this function will be called
-      //Update calulation when form data changes
+      //Update calculation when form data changes
       (val) => {
         console.info('>>> elec form changes')
         const acQty = val.ACqty || 0;
         const acHrs = val.AChrs || 0;
         this.electricityData.ACqty = acQty;
         this.electricityData.AChrs = acHrs;
-        this.electricityData.monthlyTotal = acQty * 1.5 * acHrs * 30 * 0.23;
-        this.electricityData.yearlyTotal = this.electricityData.monthlyTotal * 12;
-        this.electricityData.co2 = this.electricityData.monthlyTotal * 0.2;
+        this.electricityData.monthlyTotal = acQty * 1.5 * acHrs * 30 * 0.23; //calculating monthly total using user input
+        this.electricityData.yearlyTotal = Math.round(this.electricityData.monthlyTotal * 12 * 100)/100; //calculating yearly total using monthly total
+        this.electricityData.co2 = Math.round(acQty * 1.5 * acHrs * 30 * 0.009*100)/100;
         console.info('done')
       }
-
     )
     this.formSub = this.dryerForm.valueChanges.subscribe(
       //When the form is changed, this function will be called
-      //Update calulation when form data changes
+      //Update calculation when form data changes
       (val) => {
         const cdQty = val.CDqty || 0;
         const cdHrs = val.CDhrs || 0;
         this.dryerData.CDqty = cdQty;
         this.dryerData.CDhrs = cdHrs;
-        this.dryerData.CDmonthlyTotal = cdQty * 1.5 * cdHrs * 30 * 0.23;
-        this.dryerData.CDyearlyTotal = this.dryerData.CDmonthlyTotal * 12;
-        this.dryerData.CDco2 = this.dryerData.CDmonthlyTotal * 0.2;
+        this.dryerData.CDmonthlyTotal = Math.round(cdQty * 3 * cdHrs * 30 * 0.23*100)/100;
+        this.dryerData.CDyearlyTotal = Math.round(this.dryerData.CDmonthlyTotal * 12*100)/100;
+        this.dryerData.CDco2 = Math.round(cdQty * 3 * cdHrs * 30 * 0.009*100)/100;
       }
 
     )
@@ -103,19 +108,13 @@ export class ElectricityComponent implements OnInit, OnDestroy {
         const whHrs = val.WHhrs || 0;
         this.waterHeaterData.WHqty = whQty;
         this.waterHeaterData.WHhrs = whHrs;
-        this.waterHeaterData.WHmonthlyTotal = whQty * 3 * whHrs * 30 * 0.23;
-        this.waterHeaterData.WHyearlyTotal = this.waterHeaterData.WHmonthlyTotal * 12;
-        this.waterHeaterData.WHco2 = this.waterHeaterData.WHmonthlyTotal * 0.2;
+        this.waterHeaterData.WHmonthlyTotal = Math.round(whQty * 3 * whHrs * 30 * 0.23*100)/100;
+        this.waterHeaterData.WHyearlyTotal = Math.round(this.waterHeaterData.WHmonthlyTotal *100* 12)/100;
+        this.waterHeaterData.WHco2 = Math.round(whQty * 3 * whHrs * 30 * 0.009 * 100)/100;
       }
     )
 
-    this.enlightenSvc.getAllData()
-      .then(results => {
-        console.log('results: ', results);
-        this.electricityData = results[0];
-        this.waterHeaterData = results[1];
-        this.dryerData = results[2];
-      })
+   
 
     // Monad
     /*
@@ -164,26 +163,30 @@ export class ElectricityComponent implements OnInit, OnDestroy {
   }
 
 
-  saveValues() {
+  saveValues() { //function for saving data 
     console.log('saving values to database: ', this.electricityData);
-    const promise = this.enlightenSvc.updateElectricity(this.electricityData)
+    const promise = this.enlightenSvc.updateElectricity(this.electricityData) //calls updateElectricity
     //resolve/good -> then will be called
     promise.then(() => {
-      console.log('we have save the data')
+      console.log('data is saved') //to show programmer that data has been saved
     });
     //reject/bad -> catch will be called
     promise.catch((err) => {
-      console.error('Update error: ', err);
+      console.error('Update error: ', err); //to show programmer what the error is 
     });
 
   }
 
   submit() {
-    this.router.navigate(['/etotals']);
+    this.router.navigate(['/etotals']); /* '/etotals' replaces the ending of the current link with etotals, indicating a 
+    navigation to the etotals component*/
   }
 
   exportData() {
     this.router.navigate(['/export'])
   }
+
+  
+  
 
 }

@@ -15,17 +15,32 @@ export class ReduceOrReplenishComponent implements OnInit {
   dryer: DryerData;
 
   reducedElectricity = 0.0;
+  reducedWaterHeater = 0.0;
+  reducedDryer = 0.0;
   acNumHrs = 0;
-  numHrs = 0;
+  cdNumHrs = 0;
+  whNumHrs = 0;
 
   maxAC = 0;
   maxWH = 0;
   maxCD = 0;
 
   co2Total = 0;
-  co2Trees = 0;
+  co2AC = 0;
+  co2WH = 0;
+  co2CD = 0;
+  co2ACTrees = 0;
+  co2WHTrees = 0;
+  co2CDTrees = 0;
+  co2TreeTotal = 0;
+  ACsavings = 0;
+  WHsavings = 0;
+  CDsavings = 0;
+
 
   readonly YEARLYACCONSTANT = 1.5 * 30 * 0.23 * 12;
+  readonly YEARLYWHCONSTANT = 3 * 30 * 0.23 * 12;
+  readonly YEARLYCDCONSTANT = 3 * 30 * 0.23 *12;
 
   constructor(private enlightenSvc: EnlightenService) { }
 
@@ -39,7 +54,8 @@ export class ReduceOrReplenishComponent implements OnInit {
 
         //Initialize all reductions
         this.reducedElectricity = this.electricity.yearlyTotal;
-        this.acNumHrs = this.electricity.AChrs;
+        this.reducedWaterHeater = this.waterHeater.WHyearlyTotal;
+        this.reducedDryer = this.dryer.CDyearlyTotal;
 
         this.maxAC = this.electricity.AChrs;
         this.maxWH = this.waterHeater.WHhrs;
@@ -47,9 +63,26 @@ export class ReduceOrReplenishComponent implements OnInit {
 
         //Initiaize all hours
         this.acNumHrs = this.electricity.AChrs;
+        this.whNumHrs = this.waterHeater.WHhrs;
+        this.cdNumHrs - this.dryer.CDhrs;
+//co2
+        
+          this.co2AC = Math.round(this.electricity.co2*100)/100;
+          this.co2WH = Math.round(this.waterHeater.WHco2*100)/100;
+          this.co2CD = Math.round(this.dryer.CDco2*100)/100;
+          
+          //trees
+          this.co2ACTrees = Math.round(this.co2AC/5*100)/100;
+          this.co2WHTrees = Math.round(this.co2WH/5*100)/100;
+          this.co2CDTrees = Math.round(this.co2CD/5*100)/100;
 
-        this.co2Total = this.electricity.co2 +
+          //totals
+          this.co2Total = this.electricity.co2 +
           this.waterHeater.WHco2 + this.dryer.CDco2;
+          this.co2TreeTotal = Math.round((this.co2ACTrees + this.co2WHTrees + this.co2CDTrees)*100)/100;
+
+          //savings 
+          
       })
   }
 
@@ -59,29 +92,31 @@ export class ReduceOrReplenishComponent implements OnInit {
 
 
   reduceElectricity(event: MatSliderChange) {
-    let percentage = event.value;
-    this.reducedElectricity = Math.round(percentage * this.electricity.ACqty * this.YEARLYACCONSTANT * 100) / 100;
-
-    // if (event.value == 0) {
-    //     this.reducedElectricity = Math.round(this.electricity.yearlyTotal*100)/100;
-
-    //    return;
-    // }
-
-    //  percentage = 100 - percentage;
-    //  this.reducedElectricity = this.electricity.yearlyTotal * (percentage/100);
-    //  this.reducedElectricity = Math.round(this.reducedElectricity * 100)/100;
+    let newHours = event.value;
+    this.reducedElectricity =(newHours * this.electricity.ACqty * this.YEARLYACCONSTANT);
 
     this.acNumHrs = event.value;
+    this.ACsavings = this.electricity.yearlyTotal - this.reducedElectricity;
+  }
+ 
+  reduceWaterHeater(event: MatSliderChange) {
+    let newHours = event.value;
+    this.reducedWaterHeater = (newHours*this.waterHeater.WHqty*this.YEARLYWHCONSTANT);
+
+
+    this.whNumHrs = event.value; 
+this.WHsavings = this.waterHeater.WHyearlyTotal - this.reducedWaterHeater;
 
   }
-  reduceHours(event: MatSliderChange) {
-    let hours = event.value;
-    if (event.value == 0) {
-      this.acNumHrs = this.electricity.AChrs;
-      return;
-    }
-    this.numHrs = this.electricity.AChrs * (hours / 100);
+  reduceDryer(event: MatSliderChange) {
+    let newHours = event.value;
+    this.reducedDryer =(newHours * this.dryer.CDqty*this.YEARLYCDCONSTANT)
+
+    this.cdNumHrs = event.value;
+    this.CDsavings = this.dryer.CDyearlyTotal - this.reducedDryer;
+
+
   }
+
 }
 
