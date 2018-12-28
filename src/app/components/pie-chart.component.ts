@@ -28,7 +28,7 @@ export class PieChartComponent implements OnInit, AfterContentInit {
           title: { text: this.title },
           plotOptions: {
               pie: {
-                  dataLabels: {
+                  dataLabels: { 
                       enabled: true,
                       format: '<b>{point.name}</b> {point.percentage:.1f}%'
                   }
