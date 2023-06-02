@@ -9,9 +9,17 @@ My client specified that the app must have the following functionality:
 
 ## Final Product 
 ### Video Run Through
+https://github.com/kabirgpamnani/csia/assets/92278242/b42344d1-d365-4900-adc9-1581dc42f2b7
+
 
 ### Project Documentation
 [Link](https://drive.google.com/drive/folders/1y37HODIqNxopKOyHAB670qKBs4m2-bjB?usp=sharing) to entire project documentation
+
+## Built With
+<a href = "[https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API]"><img src="https://github.com/kabirgpamnani/csia/assets/92278242/e81c52ab-bc66-436d-94d5-3de433a8929b" width="85" height="85"></a>
+
+<a href = "[https://github.com/angular/angular-cli]"><img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" width="85" height="30"></a>
+
 
 ## Development server
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
